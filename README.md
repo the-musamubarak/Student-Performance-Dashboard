@@ -31,7 +31,7 @@ Local Development Setup
 
 Clone the repository
 
-bashgit clone https://github.com/the-musamubarak/dash_exam_scores.git
+bash git clone https://github.com/the-musamubarak/dash_exam_scores.git
 
 cd dash_exam_scores
 
@@ -57,11 +57,16 @@ bashpython app.py
 Access the dashboard
 
 Open your web browser and navigate to: http://127.0.0.1:8050
+
 📊 Dashboard Components
 Data Filters
-Filter Description Gender Toggle between male/female student performance data Parental Education Filter by various levels of parental education
+Filter Description Gender Toggle between male/female student performance data 
+Parental Education Filter by various levels of parental education
 Visualizations
-Chart Description core Distribution Histogram displaying the frequency distribution of scores across subjects Average Performance Bar chart showing mean scores per subject based on applied filters
+Chart Description 
+core Distribution 
+Histogram displaying the frequency distribution of scores across subjects 
+Average Performance Bar chart showing mean scores per subject based on applied filters
 
  Usage Examples
 The dashboard is particularly valuable for:
