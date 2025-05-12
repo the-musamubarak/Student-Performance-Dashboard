@@ -7,7 +7,7 @@ import plotly.express as px
 df = pd.read_csv('StudentsPerformance.csv')
 
 # Calculate average scores
-average_scores = df[['math score', 'reading score', 'writing score']].mean()
+average_scores = df[['MathScore', 'ReadingScore', 'WritingScore']].mean()
 
 # Create visualizations
 score_fig = px.histogram(df.melt(value_vars=['math score', 'reading score', 'writing score']),
