@@ -1,36 +1,50 @@
 import pandas as pd
-import dash
-from dash import html, dcc
 import plotly.express as px
+from dash import Dash, html, dcc
 
-# Load the data
-df = pd.read_csv('StudentsPerformance.csv')
+# Load data
+df = pd.read_csv("StudentsPerformance.csv")
 
-# Calculate average scores
+# Compute average scores
 average_scores = df[['MathScore', 'ReadingScore', 'WritingScore']].mean()
 
-# Create visualizations
-score_fig = px.histogram(df.melt(value_vars=['math score', 'reading score', 'writing score']),
-                         x='value', color='variable', nbins=20,
-                         title='Score Distribution by Subject',
-                         labels={'value': 'Score', 'variable': 'Subject'})
+# Create histogram of all scores
+score_fig = px.histogram(
+    df.melt(value_vars=['MathScore', 'ReadingScore', 'WritingScore']),
+    x="value",
+    color="variable",
+    barmode="overlay",
+    title="Distribution of Exam Scores"
+)
 
+# Create bar chart of average scores
 average_fig = px.bar(
     x=average_scores.index,
     y=average_scores.values,
-    title='Average Scores by Subject',
-    labels={'x': 'Subject', 'y': 'Average Score'}
+    labels={'x': 'Subject', 'y': 'Average Score'},
+    title="Average Scores by Subject"
 )
 
-# Build the Dash app
-app = dash.Dash(__name__)
+# Create the Dash app
+app = Dash(__name__)
+server = app.server  # for deploying on Render
+
+# Define layout
 app.layout = html.Div([
-    html.H1("Student Performance Dashboard"),
-    dcc.Graph(figure=score_fig),
-    dcc.Graph(figure=average_fig)
+    html.H1("Student Performance Dashboard", style={'textAlign': 'center'}),
+    
+    html.Div([
+        html.H2("Score Distribution"),
+        dcc.Graph(figure=score_fig)
+    ]),
+
+    html.Div([
+        html.H2("Average Scores"),
+        dcc.Graph(figure=average_fig)
+    ])
 ])
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run_server(debug=True)
 
 
